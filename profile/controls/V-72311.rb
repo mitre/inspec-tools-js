@@ -1,0 +1,39 @@
+control "V-72311" do
+  title "The Network File System (NFS) must be configured to use RPCSEC_GSS."
+  desc  "When an NFS server is configured to use RPCSEC_SYS, a selected userid
+and groupid are used to handle requests from the remote user. The userid and
+groupid could mistakenly or maliciously be set incorrectly. The RPCSEC_GSS
+method of authentication uses certificates on the server and client systems to
+more securely authenticate the remote mount request."
+  impact 0.5
+  tag "severity": nil
+  tag "gtitle": "SRG-OS-000480-GPOS-00227"
+  tag "gid": "V-72311"
+  tag "rid": "SV-86935r3_rule"
+  tag "stig_id": "RHEL-07-040750"
+  tag "fix_id": "F-78665r2_fix"
+  tag "cci": ["CCI-000366"]
+  tag "nist": ["CM-6 b", "Rev_4"]
+  tag "false_negatives": nil
+  tag "false_positives": nil
+  tag "documentable": false
+  tag "mitigations": nil
+  tag "severity_override_guidance": false
+  tag "potential_impacts": nil
+  tag "third_party_tools": nil
+  tag "mitigation_controls": nil
+  tag "responsibility": nil
+  tag "ia_controls": nil
+  tag "check": "Verify \"AUTH_GSS\" is being used to authenticate NFS mounts.To
+check if the system is importing an NFS file system, look for any entries in
+the \"/etc/fstab\" file that have a file system type of \"nfs\" with the
+following command:# cat /etc/fstab | grep nfs192.168.21.5:/mnt/export /data1
+nfs4 rw,sync ,soft,sec=krb5:krb5i:krb5pIf the system is mounting file systems
+via NFS and has the sec option without the \"krb5:krb5i:krb5p\" settings, the
+\"sec\" option has the \"sys\" setting, or the \"sec\" option is missing, this
+is a finding."
+  tag "fix": "Update the \"/etc/fstab\" file so the option \"sec\" is defined
+for each NFS mounted file system and the \"sec\" option does not have the
+\"sys\" setting. Ensure the \"sec\" option is defined as \"krb5:krb5i:krb5p\"."
+end
+

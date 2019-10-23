@@ -1,0 +1,16 @@
+var fs = require('fs');
+
+class InspecUtils {
+  private unpack_profile(directory, controls, seperated, output_format) 
+  {
+    // Should rm rf dir first
+    fs.mkdirSync(directory + "/controls", { recursive: true }, (err) => {
+      if (err) throw err;
+    });
+    fs.mkdirSync(directory + "/libraries", { recursive: true }, (err) => {
+      if (err) throw err;
+    });
+    if(seperated)
+  }
+
+}
