@@ -8,7 +8,7 @@
   "main": "dist/inspec_tools_js",
   "types": "./dist/inspec_tools_js.d.ts",
   "dependencies": {
-    "inspecjs": "^0.3.0",
+    "inspecjs": "^0.7.1",
     "libxmljs": "^0.19.7",
     "xml2json": "^0.11.2",
     "yargs": "^14.0.0"
@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "rm -r ./dist; tsc --strict",
+    "tsc": "tsc --strict --watch ",
     "test": "jest --watch",
     "docs": "typedoc --out docs ./src",
     "gen-types": "bash scripts/update_schema.sh"
