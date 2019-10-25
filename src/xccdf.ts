@@ -1,8 +1,6 @@
 var parser = require('xml2json');
 import * as InspecJS from 'inspecjs';
 import { thisTypeAnnotation, VariableDeclaration } from '@babel/types';
-import { ConversionResult } from "inspecjs";
-import { convertFile } from "inspecjs";
 var fs = require('fs');
 
 const valid_tags = [ "VulnDiscussion", "FalsePositives", "FalseNegatives",
@@ -16,7 +14,7 @@ interface Hash {
 
 class XCCDF {
     xmlJSON: {[key: string] : any};
-    profileJSON: ConversionResult;
+    profileJSON: InspecJS.ConversionResult;
     constructor(name: string) {
         var fileString = fs.readFileSync(name);
         //var cciList = fs.readFileSync()
@@ -92,10 +90,11 @@ class XCCDF {
             control['source_location'] = {"ref": "","line": 0};
             control['results'] = []
             control['waver_data'] = {}
+            let c: InspecJS.AnyFullControl = control;
             profile.controls.push(control);
         }
         exec.profiles.push(profile);
-        this.profileJSON = convertFile(JSON.stringify(exec));
+        this.profileJSON = InspecJS.convertFile(JSON.stringify(exec));
     }
 
     stringify() {
